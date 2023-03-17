@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import UserForm from "./components/UserForm";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import UserForm from './components/UserForm';
 import UserData from "./components/UserData";
 
 class App extends Component {
