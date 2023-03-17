@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import UserForm from "./components/UserForm";
+import UserData from "./components/UserData";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nombre: "",
+      apellido: "",
+      edad: "",
+      ciudad: "",
+      pais: "",
+    };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="row mt-5">
+          <div className="col-md-6">
+            <UserForm
+              onFormSubmit={this.handleFormSubmit}
+              onInputChange={this.handleInputChange}
+              nombre={this.state.nombre}
+              apellido={this.state.apellido}
+              edad={this.state.edad}
+              ciudad={this.state.ciudad}
+              pais={this.state.pais}
+            />
+          </div>
+          <div className="col-md-6">
+            <UserData
+              nombre={this.state.nombre}
+              apellido={this.state.apellido}
+              edad={this.state.edad}
+              ciudad={this.state.ciudad}
+              pais={this.state.pais}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
